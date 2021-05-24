@@ -1,0 +1,60 @@
+//Mixin for converting fonts
+
+@mixin font($font_name, $file_name, $weight, $style)
+  @font-face
+    font-family: $font_name
+    font-display: swap
+    src: url('../fonts/#{$file_name}.woff') format('woff'), url('../fonts/#{$file_name}.woff2') format('woff2')
+    font-weight: #{$weight}
+    font-style: #{$style}
+
+//Mixin for retina in css
+
+@mixin retina($density: 2)
+  @media only screen and (-webkit-min-device-pixel-ratio: $density),
+  only screen and (min--moz-device-pixel-ratio: $density),
+  only screen and (-o-min-device-pixel-ratio: #{$density}/1),
+  only screen and (min-device-pixel-ratio: $density),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: $density dppx)
+    @content
+
+// IMPORT SECTION
+
+// CSS library plug-in example (npm i --save-dev normalize.css)
+@import '../../node_modules/normalize.css/normalize.css'
+
+// @import '../libs/font-awesome/css/font-awesome.min.css'
+
+//USER VARIABLES SECTION
+
+$color-accent: #fb973b
+
+//Variables main font settings
+$text-font: 'Calibri', sans-serif
+$text-size: 24px
+$text-weight: 400
+$text-color: #616161
+
+//Variables main title settings
+$title-size: 60px
+$title-weight: 700
+$title-color: #141419
+$title-line-height: 72px
+
+//BREAKPOINTS
+
+$break_xl: 1200px
+$break_lg: 992px
+$break_md: 768px
+$break_sm: 576px
+$break_xs: 480px
+$break_xxs: 320px
+
+=to($max_width)
+  @media screen and (max-width: $max_width)
+    @content
+
+=from($min_width)
+  @media screen and (min-width: $min_width)
+    @content
